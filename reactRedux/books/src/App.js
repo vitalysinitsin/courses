@@ -1,28 +1,70 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BookCreate from "./components/BookCreate";
-import BookShow from "./components/BookShow";
 import BookList from "./components/BookList";
-import { generateRandomNumber } from "./helpers/numbers";
 
 function App() {
   const [books, setBooks] = useState([]);
 
-  const createBook = (title) => {
-    setBooks([...books, { id: generateRandomNumber(4), title }]);
+  useEffect(() => {
+    fetchBooks();
+  }, [books]);
+
+  const fetchBooks = async () => {
+    const response = await fetch("http://localhost:3001/books");
+    const fetchedBooks = await response.json();
+
+    if (response.ok) {
+      setBooks(fetchedBooks);
+    }
   };
 
-  const updateBookById = (id, title) => {
-    const updatedBooks = books.map((book) =>
-      book.id === id ? { ...book, title } : book
-    );
+  const createBook = async (title) => {
+    const response = await fetch("http://localhost:3001/books", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title }),
+    });
+    const newBookObject = await response.json();
 
-    setBooks(updatedBooks);
+    if (response.ok && Object.keys(newBookObject).length !== 0) {
+      setBooks([...books, newBookObject]);
+    }
   };
 
-  const deleteBookById = (id) => {
-    const updatedBooks = books.filter((book) => book.id !== id);
+  const updateBookById = async (id, title) => {
+    const response = await fetch(`http://localhost:3001/books/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title }),
+    });
+    const updatedBook = await response.json();
 
-    setBooks(updatedBooks);
+    if (response.ok && Object.keys(updatedBook).length !== 0) {
+      const updatedBooks = books.map((book) =>
+        book.id === id ? updatedBook : book
+      );
+
+      setBooks(updatedBooks);
+    }
+  };
+
+  const deleteBookById = async (id) => {
+    const response = await fetch(`http://localhost:3001/books/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      const updatedBooks = books.filter((book) => book.id !== id);
+
+      setBooks(updatedBooks);
+    }
   };
 
   return (
