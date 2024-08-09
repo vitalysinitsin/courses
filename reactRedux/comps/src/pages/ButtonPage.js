@@ -1,8 +1,8 @@
-import Button from "./components/Button";
+import Button from "../components/Button";
 import "./index.css";
 import { GoBell, GoAlert, GoDatabase, GoGear } from "react-icons/go";
 
-function App() {
+function ButtonPage() {
   const handleClickSuccess = () => {
     console.log("click");
   };
@@ -10,25 +10,25 @@ function App() {
     <>
       <Button primary rounded>
         <GoBell />
-        primary
+        Importanto
       </Button>
       <Button secondary outline>
         <GoAlert />
-        secondary
+        itsokay
       </Button>
       <Button warning>
         <GoDatabase />
-        warning
+        maybe?
       </Button>
       <Button danger>
         <GoGear />
-        danger
+        no no
       </Button>
       <Button success onClick={handleClickSuccess}>
-        success
+        YES!
       </Button>
     </>
   );
 }
 
-export default App;
+export default ButtonPage;
