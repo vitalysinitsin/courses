@@ -1,6 +1,7 @@
+import React from "react";
 import Button from "../components/Button";
 import "./index.css";
-import { GoBell, GoAlert, GoDatabase, GoGear } from "react-icons/go";
+import { GoAlert, GoBell, GoDatabase, GoGear } from "react-icons/go";
 
 function ButtonPage() {
   const handleClickSuccess = () => {
