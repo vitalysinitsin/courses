@@ -12,10 +12,12 @@ function DropdownPage() {
     { label: "Red", value: "red" },
     { label: "Green", value: "green" },
     { label: "Blue", value: "blue" },
+    { label: "Yellow", value: "yellow" },
   ];
 
   return (
     <div className="flex">
+      <Dropdown options={options} value={value} onChange={handleSelect} />
       <Dropdown options={options} value={value} onChange={handleSelect} />
     </div>
   );
