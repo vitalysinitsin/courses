@@ -5,6 +5,7 @@ const NavigationContext = createContext();
 function NavigationProvider({ children }) {
   const [currentPath, setCurrentPath] = useState();
 
+  const handlePathUpdate = () => {};
   return (
     <NavigationContext.Provider value={{}}>
       {children}
