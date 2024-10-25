@@ -1,12 +1,10 @@
 import React from "react";
 import Button from "../components/Button";
-import "./index.css";
+import "../index.css";
 import { GoAlert, GoBell, GoDatabase, GoGear } from "react-icons/go";
 
 function ButtonPage() {
-  const handleClickSuccess = () => {
-    console.log("click");
-  };
+  const handleClickSuccess = () => {};
   return (
     <>
       <Button primary rounded>

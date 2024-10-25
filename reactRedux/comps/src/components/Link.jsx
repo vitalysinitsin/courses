@@ -3,7 +3,7 @@ import useNavigation from "../hooks/use-navigation";
 
 function Link({ to, children }) {
   const { navigate } = useNavigation();
-  const classes = classNames("text-blue-500 underline m-1");
+  const classes = classNames("text-blue-500 m-1");
 
   const handleClick = (event) => {
     if (event.metaKey || event.ctrlKey) {
