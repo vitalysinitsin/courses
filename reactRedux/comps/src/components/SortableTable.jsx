@@ -1,27 +1,13 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import Table from "./Table";
 import { GoArrowSmallDown, GoArrowSmallUp } from "react-icons/go";
+import useSort from "../hooks/use-sort";
 
 function SortableTable({ data, config, ...rest }) {
-  const [sortParams, setSortParams] = useState({
-    order: null,
-    sortBy: null,
-  });
-
-  const handleClick = (label) => {
-    if (sortParams.sortBy && label !== sortParams.sortBy) {
-      setSortParams({ sortBy: label, order: "asc" });
-      return;
-    }
-
-    if (sortParams.order === null) {
-      setSortParams({ sortBy: label, order: "asc" });
-    } else if (sortParams.order === "asc") {
-      setSortParams({ sortBy: label, order: "desc" });
-    } else if (sortParams.order === "desc") {
-      setSortParams({ sortBy: null, order: null });
-    }
-  };
+  const { sortOrder, sortBy, sortedData, setSortColumn } = useSort(
+    data,
+    config
+  );
 
   const updatedConfig = config.map((column) => {
     if (!column.sortValue) {
@@ -33,11 +19,11 @@ function SortableTable({ data, config, ...rest }) {
       header: () => (
         <th
           className="cursor-pointer hover:bg-gray-200"
-          onClick={() => handleClick(column.label)}
+          onClick={() => setSortColumn(column.label)}
         >
           <div className="flex items-center">
             <div className="text-2xl">
-              {getIcons(column.label, sortParams.sortBy, sortParams.order)}
+              {getIcons(column.label, sortBy, sortOrder)}
             </div>
             {column.label}
           </div>
@@ -45,23 +31,6 @@ function SortableTable({ data, config, ...rest }) {
       ),
     };
   });
-
-  let sortedData = data;
-  if (sortParams.order && sortParams.sortBy) {
-    const { sortValue } = config.find((col) => col.label === sortParams.sortBy);
-
-    sortedData = [...data].sort((a, b) => {
-      const valueA = sortValue(a);
-      const valueB = sortValue(b);
-      const reverseOrder = sortParams.order === "asc" ? 1 : -1;
-
-      if (typeof valueA === "string") {
-        return valueA.localeCompare(valueB) * reverseOrder;
-      } else {
-        return (valueA - valueB) * reverseOrder;
-      }
-    });
-  }
 
   return <Table {...rest} config={updatedConfig} data={sortedData} />;
 }
