@@ -6,6 +6,7 @@ function TablePage() {
     { name: "Banana", color: "bg-yellow-500", score: 3 },
     { name: "Lime", color: "bg-green-500", score: 1 },
     { name: "Apple", color: "bg-red-500", score: 2 },
+    { name: "Cherry", color: "bg-red-800", score: 8 },
   ];
 
   const config = [

@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Table from "./Table";
+import { GoArrowSmallDown, GoArrowSmallUp } from "react-icons/go";
 
 function SortableTable({ data, config, ...rest }) {
   const [sortParams, setSortParams] = useState({
@@ -8,6 +9,11 @@ function SortableTable({ data, config, ...rest }) {
   });
 
   const handleClick = (label) => {
+    if (sortParams.sortBy && label !== sortParams.sortBy) {
+      setSortParams({ sortBy: label, order: "asc" });
+      return;
+    }
+
     if (sortParams.order === null) {
       setSortParams({ sortBy: label, order: "asc" });
     } else if (sortParams.order === "asc") {
@@ -24,9 +30,17 @@ function SortableTable({ data, config, ...rest }) {
 
     return {
       ...column,
-      header: (
-        <th onClick={() => handleClick(column.label)}>
-          {column.label} IS SORTABLE
+      header: () => (
+        <th
+          className="cursor-pointer hover:bg-gray-200"
+          onClick={() => handleClick(column.label)}
+        >
+          <div className="flex items-center">
+            <div className="text-2xl">
+              {getIcons(column.label, sortParams.sortBy, sortParams.order)}
+            </div>
+            {column.label}
+          </div>
         </th>
       ),
     };
@@ -49,12 +63,22 @@ function SortableTable({ data, config, ...rest }) {
     });
   }
 
-  return (
-    <div>
-      {sortParams.order}-{sortParams.sortBy}
-      <Table {...rest} config={updatedConfig} data={sortedData} />
-    </div>
-  );
+  return <Table {...rest} config={updatedConfig} data={sortedData} />;
+}
+
+function getIcons(label, sortBy, sortOrder) {
+  if (label !== sortBy) {
+    return (
+      <Fragment>
+        <GoArrowSmallUp />
+        <GoArrowSmallDown />
+      </Fragment>
+    );
+  } else if (sortOrder === "asc") {
+    return <GoArrowSmallUp />;
+  } else if (sortOrder === "desc") {
+    return <GoArrowSmallDown />;
+  }
 }
 
 export default SortableTable;
