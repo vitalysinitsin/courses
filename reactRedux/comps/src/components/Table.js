@@ -1,5 +1,10 @@
+import { Fragment } from "react";
+
 function Table({ data, config, keyFn }) {
-  const renderedHeaders = config.map(({ label }) => {
+  const renderedHeaders = config.map(({ label, header }) => {
+    if (header) {
+      return <Fragment key={label}>{header}</Fragment>;
+    }
     return <th key={label}>{label}</th>;
   });
 
