@@ -19,4 +19,4 @@ const store = configureStore({
   },
 });
 
-console.log(store);
+export { store };
