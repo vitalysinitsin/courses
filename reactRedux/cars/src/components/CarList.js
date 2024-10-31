@@ -3,7 +3,9 @@ import { removeCar } from "../store";
 
 function CarList() {
   const dispatch = useDispatch();
-  const cars = useSelector((state) => state.cars.list);
+  const cars = useSelector(({ cars: { list, searchTerm } }) =>
+    list.filter((car) => car.name.toLowerCase().includes(searchTerm))
+  );
   const handleCarDelete = (carId) => {
     dispatch(removeCar(carId));
   };
@@ -12,7 +14,7 @@ function CarList() {
     return (
       <div key={car.id} className="panel">
         <p>
-          {car.name} - {car.cost}
+          {car.name} - ${car.cost}
         </p>
         <button
           className="button is-danger"
