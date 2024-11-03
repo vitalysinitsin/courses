@@ -14,7 +14,7 @@ const usersSlice = createSlice({
     });
     builder.addCase(fetchUsers.rejected, (state, action) => {
       state.isLoading = false;
-      state.error = action.payload;
+      state.error = action.error;
     });
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
       state.isLoading = false;
