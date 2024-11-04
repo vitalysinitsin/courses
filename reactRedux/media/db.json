@@ -1,5 +1,50 @@
 {
-  "users": [{ "id": 1, "name": "Myra" }],
+  "users": [
+    {
+      "id": 1,
+      "name": "Myra"
+    },
+    {
+      "id": "7aa0",
+      "name": "Erma Kuvalis"
+    },
+    {
+      "id": "116c",
+      "name": "Archie Satterfield"
+    },
+    {
+      "id": "f915",
+      "name": "Dr. Gwendolyn Schaefer MD"
+    },
+    {
+      "id": "cf46",
+      "name": "Chad Paucek"
+    },
+    {
+      "id": "984c",
+      "name": "Jerald Feest"
+    },
+    {
+      "id": "7c0a",
+      "name": "Shelley Mraz"
+    },
+    {
+      "id": "72e8",
+      "name": "Bessie Hills"
+    },
+    {
+      "id": "3dee",
+      "name": "Jackie Nikolaus"
+    },
+    {
+      "id": "54b4",
+      "name": "Darrell Russel"
+    },
+    {
+      "id": "9055",
+      "name": "Kendra Wyman"
+    }
+  ],
   "albums": [],
   "photos": []
 }
