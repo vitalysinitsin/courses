@@ -1,72 +1,19 @@
 {
   "users": [
     {
-      "id": "1",
-      "name": "Jack Fritsch"
-    },
-    {
       "id": "9eed",
       "name": "Shane Stoltenberg"
     },
     {
       "id": "12da",
       "name": "Noah Feil"
-    },
-    {
-      "id": "f938",
-      "name": "Darren Pacocha"
     }
   ],
   "albums": [
     {
       "id": "22",
       "title": "greatful dead",
-      "userId": "1"
-    },
-    {
-      "id": "f1b3",
-      "userId": "1",
-      "title": "Bespoke Granite Bike"
-    },
-    {
-      "id": "62a9",
-      "userId": "1",
-      "title": "Recycled Plastic Hat"
-    },
-    {
-      "id": "56c0",
-      "userId": "1",
-      "title": "Sleek Rubber Shoes"
-    },
-    {
-      "id": "6242",
-      "userId": "1",
-      "title": "Fantastic Bronze Sausages"
-    },
-    {
-      "id": "2f07",
-      "userId": "f938",
-      "title": "Fantastic Fresh Hat"
-    },
-    {
-      "id": "171d",
-      "userId": "f938",
-      "title": "Luxurious Plastic Hat"
-    },
-    {
-      "id": "a6cf",
-      "userId": "f938",
-      "title": "Modern Metal Shirt"
-    },
-    {
-      "id": "3791",
-      "userId": "12da",
-      "title": "Luxurious Soft Tuna"
-    },
-    {
-      "id": "ce76",
-      "userId": "1",
-      "title": "Generic Granite Ball"
+      "userId": "9eed"
     },
     {
       "id": "8b09",
