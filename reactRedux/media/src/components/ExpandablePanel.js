@@ -7,8 +7,11 @@ function ExpandablePanel({ header, children }) {
     setExpanded((current) => !current);
   };
   return (
-    <div className="mb-2 border rounded" onClick={handleClick}>
-      <div className="flex p-2 justify-between items-center cursor-pointer">
+    <div className="mb-2 border rounded">
+      <div
+        onClick={handleClick}
+        className="flex p-2 justify-between items-center cursor-pointer"
+      >
         <div className="flex flex-row justify-between">{header}</div>
         <div>{expanded ? <GoChevronDown /> : <GoChevronLeft />}</div>
       </div>
