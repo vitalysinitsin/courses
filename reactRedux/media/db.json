@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": "0322",
+      "id": "1",
       "name": "Jack Fritsch"
     },
     {
@@ -17,6 +17,6 @@
       "name": "Darren Pacocha"
     }
   ],
-  "albums": [],
+  "albums": [{ "id": "22", "title": "greatful dead", "userId": "1" }],
   "photos": []
 }
