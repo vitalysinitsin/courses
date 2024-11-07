@@ -26,7 +26,11 @@ function AlbumsList({ user }) {
     <div>
       <div className="m2 flex flex-row items-center justify-between">
         <h3 className="text-lg font-bold">Albums for {user.name}</h3>
-        <Button loading={results.isLoading} onClick={handleAddAlbum}>
+        <Button
+          className="m-2"
+          loading={results.isLoading}
+          onClick={handleAddAlbum}
+        >
           + Add Album
         </Button>
       </div>
