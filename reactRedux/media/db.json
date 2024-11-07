@@ -24,7 +24,23 @@
       "id": "c2fb",
       "userId": "12da",
       "title": "Elegant Fresh Shirt"
+    },
+    {
+      "id": "c823",
+      "userId": "9eed",
+      "title": "Licensed Wooden Gloves"
     }
   ],
-  "photos": []
+  "photos": [
+    {
+      "id": "ebec",
+      "albumId": "22",
+      "url": "https://loremflickr.com/150/150/abstract?lock=54251"
+    },
+    {
+      "id": "45b5",
+      "albumId": "22",
+      "url": "https://loremflickr.com/150/150/abstract?lock=19631"
+    }
+  ]
 }
