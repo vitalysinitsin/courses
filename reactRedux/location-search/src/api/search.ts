@@ -1,9 +1,11 @@
+import { Place } from "./Place";
+
 type Feature = {
   geometry: {
     coordinates: number[];
   };
   properties: {
-    displayName: string;
+    display_name: string;
     place_id: number;
   };
 };
@@ -19,5 +21,14 @@ export const search = async (term: string) => {
 
   const data: SearchResponse = await res.json();
 
-  return data;
+  const places: Place[] = data.features.map((feature) => {
+    return {
+      id: feature.properties.place_id,
+      name: feature.properties.display_name,
+      longitude: feature.geometry.coordinates[0],
+      latitude: feature.geometry.coordinates[1],
+    };
+  });
+
+  return places;
 };
