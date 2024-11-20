@@ -4,8 +4,20 @@ import { useLoaderData } from "react-router-dom";
 function DetailsPage() {
   const { details } = useLoaderData() as DetailsLoaderResult;
   return (
-    <div>
-      {details.name} {details.description}
+    <div className="space-y-4">
+      <h1 className="text-3xl font-bold my-4">{details.name}</h1>
+      <div>
+        <h3 className="text-lg font-bold">Description</h3>
+        <div className="p3 bg-gray-200 rounded">{details.description}</div>
+      </div>
+      <div>
+        <h3 className="text-lg font-bold">Licesnse</h3>
+        <div className="p3 bg-gray-200 rounded">{details.license}</div>
+      </div>
+      <div>
+        <h3 className="text-lg font-bold">Author</h3>
+        <div className="p3 bg-gray-200 rounded">{details.author.name}</div>
+      </div>
     </div>
   );
 }
