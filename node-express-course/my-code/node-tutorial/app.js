@@ -114,3 +114,40 @@ server.listen(5000);
 // npm init -y (everything is default)
 
 const _ = require("lodash");
+
+// const getText = (path) => {
+//   return new Promise((resolve, reject) => {
+//     readFile(path, "utf8", (error, data) => {
+//       if (error) {
+//         reject(error);
+//       } else {
+//         resolve(data);
+//       }
+//     });
+//   });
+// };
+
+const util = require("util");
+const readFilePromise = util.promisify(readFile);
+const writeFilePromise = util.promisify(writeFile);
+
+// getText("./content/first.txt")
+//   .then((data) => console.log(data))
+//   .catch((error) => console.log(error));
+
+const start = async () => {
+  try {
+    const first = await readFilePromise("./content/first.txt", "utf8");
+    const second = await readFilePromise("./content/second.txt", "utf8");
+    await writeFilePromise(
+      "./content/result-mind-grenade.txt",
+      `THIS IS AWESOME: ${first} ${second}`
+    );
+
+    console.log(first, second);
+  } catch (erorr) {
+    console.log(error);
+  }
+};
+
+start();
