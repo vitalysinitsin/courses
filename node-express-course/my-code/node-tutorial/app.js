@@ -183,9 +183,20 @@
 //   writeFileSync("./content/big.txt", `hello world${i}`, { flag: "a" });
 // }
 
-const { createReadStream } = require("fs");
-const stream = createReadStream("./content/big.txt");
+// const { createReadStream } = require("fs");
+// const stream = createReadStream("./content/big.txt");
 
-stream.on("data", (result) => {
-  console.log(result);
+// stream.on("data", (result) => {
+//   console.log(result);
+// });
+
+const http = require("http");
+const fs = require("fs");
+const server = http.createServer();
+
+server.on("request", (req, res) => {
+  const text = fs.readFileSync("./content/big.txt", "utf8");
+  res.end(text);
 });
+
+server.listen("5000");
