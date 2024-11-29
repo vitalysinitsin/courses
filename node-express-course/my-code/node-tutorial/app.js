@@ -166,14 +166,26 @@
 
 // customEmitter.emit("response", "john", 34);
 
-const http = require("http");
+// const http = require("http");
 
-// using even emitter
-const server = http.createServer();
-//emits request event
-// subscribe to it / listen for it / respond to it
-server.on("request", (req, res) => {
-  res.end("Welcome");
+// // using even emitter
+// const server = http.createServer();
+// //emits request event
+// // subscribe to it / listen for it / respond to it
+// server.on("request", (req, res) => {
+//   res.end("Welcome");
+// });
+
+// server.listen(5000);
+
+// const { writeFileSync } = require("fs");
+// for (let i = 0; i < 10000; i++) {
+//   writeFileSync("./content/big.txt", `hello world${i}`, { flag: "a" });
+// }
+
+const { createReadStream } = require("fs");
+const stream = createReadStream("./content/big.txt");
+
+stream.on("data", (result) => {
+  console.log(result);
 });
-
-server.listen(5000);
