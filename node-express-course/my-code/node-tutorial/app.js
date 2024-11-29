@@ -195,8 +195,13 @@ const fs = require("fs");
 const server = http.createServer();
 
 server.on("request", (req, res) => {
-  const text = fs.readFileSync("./content/big.txt", "utf8");
-  res.end(text);
+  // const text = fs.readFileSync("./content/big.txt", "utf8");
+  // res.end(text);
+
+  const fileStream = fs.createReadStream("./content/big.txt", "utf8");
+  fileStream.on("open", () => {
+    fileStream.pipe(res);
+  });
 });
 
 server.listen("5000");
