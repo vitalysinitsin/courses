@@ -127,28 +127,113 @@
 //   console.log("server is listening to port 5000");
 // });
 
+// const express = require("express");
+// const morgan = require("morgan");
+// const app = express();
+// const logger = require("./logger");
+// const authorize = require("./authorize");
+
+// // app.use([logger, authorize]);
+// // app.use(express.static("./public"));
+// app.use(morgan("tiny"));
+
+// app.get("/", (req, res) => {
+//   res.send("home");
+// });
+
+// app.get("/about", (req, res) => {
+//   res.send("about");
+// });
+// app.get("/api/products", (req, res) => {
+//   res.send("products");
+// });
+// app.get("/api/items", (req, res) => {
+//   res.send("items");
+// });
+
+// app.listen(5000, () => {
+//   console.log("server is listening on port 5000");
+// });
+
 const express = require("express");
-const morgan = require("morgan");
 const app = express();
-const logger = require("./logger");
-const authorize = require("./authorize");
+let { people } = require("./data");
 
-// app.use([logger, authorize]);
-// app.use(express.static("./public"));
-app.use(morgan("tiny"));
+app.use(express.static("./methods-public"));
+app.use(express.urlencoded({ extended: false }));
+// app.use();
 
-app.get("/", (req, res) => {
-  res.send("home");
+app.get("/api/people", (req, res) => {
+  res.status(200).json({ success: true, data: people });
 });
 
-app.get("/about", (req, res) => {
-  res.send("about");
+app.use(express.json());
+app.post("/api/people", (req, res) => {
+  const { name } = req.body;
+  if (!name) {
+    res
+      .status(400)
+      .json({ success: false, msg: "please provide the name value" });
+  }
+  res.status(201).json({ success: true, person: name });
 });
-app.get("/api/products", (req, res) => {
-  res.send("products");
+app.post("/api/postman/people", (req, res) => {
+  const { name } = req.body;
+  if (!name) {
+    res
+      .status(400)
+      .json({ success: false, msg: "please provide the name value" });
+  }
+  res.status(201).json({ success: true, data: [...people, name] });
 });
-app.get("/api/items", (req, res) => {
-  res.send("items");
+
+app.put("/api/people/:id", (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+
+  const person = people.find((person) => person.id === Number(id));
+
+  if (!person) {
+    res
+      .status(400)
+      .json({ success: false, msg: `no person with id: ${id} exists.` });
+  }
+
+  const newPeople = people.map((person) => {
+    if (person.id === Number(id)) {
+      person.name = name;
+    }
+    return person;
+  });
+
+  res.status(200).json({ success: true, newPeople });
+});
+
+app.delete("/api/people/:id", (req, res) => {
+  const { id } = req.params;
+
+  const person = people.find((person) => person.id === Number(id));
+
+  if (!person) {
+    res
+      .status(400)
+      .json({ success: false, msg: `no person with id: ${id} exists.` });
+  }
+
+  const newPeople = people.filter((person) => person.id !== Number(id));
+
+  console.log(newPeople);
+
+  res.status(200).json({ success: true, newPeople });
+});
+
+app.post("/login", (req, res) => {
+  const { name } = req.body;
+  if (name) {
+    return res.status(200).send(`Welcome ${name}!`);
+  } else {
+    return res.status(401).send("please provide credentials");
+  }
 });
 
 app.listen(5000, () => {
