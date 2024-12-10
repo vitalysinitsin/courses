@@ -1,9 +1,22 @@
 <mat-card appearance="outlined">
   <mat-card-header>
-    <mat-card-title> Angular 19 catchup</mat-card-title>
-    <mat-card-subtitle></mat-card-subtitle>
+    <mat-card-title>{{ title | uppercase }}</mat-card-title>
+    <mat-card-subtitle>{{ subtitle | lowercase }}</mat-card-subtitle>
   </mat-card-header>
-  <mat-card-content><app-home></app-home></mat-card-content>
+  <mat-card-content>
+    <app-home></app-home>
+    <p>{{ todaysDate | date : "MM/dd/yy" }}</p>
+    <p>{{ salary | currency : "CAD" }}</p>
+    <p>{{ salary | number : "1.0-4" }}</p>
+    <p>{{ salary | percent }}</p>
+    <p>{{ _obj | json }}</p>
+    <p>{{ title | reverse }}</p>
+    <input [disabled]="isDisabled" />
+    <br />
+    <input (input)="UpdateTitle($event)" [value]="title" />
+    <br />
+    <button (click)="ChangeTitle()">title Controller</button>
+  </mat-card-content>
 </mat-card>
 <br />
 
