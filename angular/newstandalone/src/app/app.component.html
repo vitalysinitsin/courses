@@ -14,6 +14,7 @@
     <input [disabled]="isDisabled" />
     <br />
     <input (input)="UpdateTitle($event)" [value]="title" />
+    <input [(ngModel)]="subtitle" />
     <br />
     <button (click)="ChangeTitle()">title Controller</button>
   </mat-card-content>

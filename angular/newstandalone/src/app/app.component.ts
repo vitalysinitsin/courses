@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { HomeComponent } from './home/home.component';
 import { CommonModule } from '@angular/common';
 import { ReversePipe } from './custom/reverse.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ import { ReversePipe } from './custom/reverse.pipe';
     HomeComponent,
     CommonModule,
     ReversePipe,
+    FormsModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
