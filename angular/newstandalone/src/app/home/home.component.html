@@ -1,1 +1,21 @@
-<p>home works!</p>
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>{{ title | uppercase }}</mat-card-title>
+    <mat-card-subtitle>{{ subtitle | lowercase }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{ todaysDate | date : "MM/dd/yy" }}</p>
+    <p>{{ salary | currency : "CAD" }}</p>
+    <p>{{ salary | number : "1.0-4" }}</p>
+    <p>{{ salary | percent }}</p>
+    <p>{{ _obj | json }}</p>
+    <p>{{ title | reverse }}</p>
+    <input [disabled]="isDisabled" />
+    <br />
+    <input (input)="UpdateTitle($event)" [value]="title" />
+    <input [(ngModel)]="subtitle" />
+    <br />
+    <button (click)="ChangeTitle()">title Controller</button>
+  </mat-card-content>
+</mat-card>
+<br />
