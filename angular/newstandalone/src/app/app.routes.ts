@@ -5,6 +5,9 @@ import { ContactComponent } from './common/contact/contact.component';
 import { CustomerComponent } from './common/customer/customer.component';
 import { AddComponent } from './common/add/add.component';
 import { StatusComponent } from './common/status/status.component';
+import { authGuard } from './guard/auth.guard';
+import { childAuthGuard } from './guard/child-auth.guard';
+import { authDeactivateGuard } from './guard/auth-deactivate.guard';
 
 export const routes: Routes = [
   {
@@ -26,6 +29,9 @@ export const routes: Routes = [
   {
     path: 'customer',
     component: CustomerComponent,
+    canActivate: [authGuard],
+    canActivateChild: [childAuthGuard],
+    canDeactivate: [authDeactivateGuard],
     children: [
       {
         path: 'add',
