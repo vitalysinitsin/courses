@@ -24,7 +24,10 @@ export const routes: Routes = [
   },
   {
     path: 'contact/:submenu/:id',
-    component: ContactComponent,
+    loadComponent: () =>
+      import('./common/contact/contact.component').then(
+        (m) => m.ContactComponent
+      ),
   },
   {
     path: 'customer',

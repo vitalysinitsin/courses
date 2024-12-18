@@ -16,6 +16,24 @@
     <input [(ngModel)]="subtitle" />
     <br />
     <button (click)="ChangeTitle()">title Controller</button>
+    <br />
+    <div [ngClass]="{ active: isDisabled, inactive: !isDisabled }">
+      <h2>Attribute directive</h2>
+    </div>
+    <div *ngIf="show">
+      <h2 [ngStyle]="{ color: _color, 'font-size': _font }">
+        Attribute directive
+      </h2>
+    </div>
+    <div *ngFor="let item of ticketInfo" [ngStyle]="{ color: item.color }">
+      <span>id: {{ item.id }}</span>
+      <h2>{{ item.name | titlecase }}</h2>
+    </div>
+    <div [ngSwitch]="_view">
+      <div *ngSwitchCase="'home'"><h2>Home View</h2></div>
+      <div *ngSwitchCase="'about'"><h2>About View</h2></div>
+      <div *ngSwitchDefault><h2>Default View</h2></div>
+    </div>
   </mat-card-content>
 </mat-card>
 <br />

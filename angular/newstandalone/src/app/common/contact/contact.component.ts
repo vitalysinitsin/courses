@@ -1,4 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterContentChecked,
+  AfterContentInit,
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  DoCheck,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -7,15 +17,41 @@ import { ActivatedRoute } from '@angular/router';
   template: ` <p>contact works!</p> `,
   styleUrl: './contact.component.css',
 })
-export class ContactComponent implements OnInit {
-  routeValue: any;
-  submenu: any;
-
-  constructor(private route: ActivatedRoute) {}
-
+export class ContactComponent
+  implements
+    OnChanges,
+    OnInit,
+    DoCheck,
+    AfterContentInit,
+    AfterContentChecked,
+    AfterViewInit,
+    AfterViewChecked
+{
   ngOnInit(): void {
-    this.routeValue = this.route.snapshot.paramMap.get('id');
-    this.submenu = this.route.snapshot.paramMap.get('submenu');
-    console.log(this.submenu, this.routeValue);
+    console.log('ngOnInit');
+  }
+
+  ngDoCheck(): void {
+    console.log('ngDocheck');
+  }
+
+  ngAfterContentInit(): void {
+    console.log('ngAfterContentInit');
+  }
+
+  ngAfterContentChecked(): void {
+    console.log('ngAfterContentChecked');
+  }
+
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit');
+  }
+
+  ngAfterViewChecked(): void {
+    console.log('ngAfterViewChecked');
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('ngOnChanges');
   }
 }

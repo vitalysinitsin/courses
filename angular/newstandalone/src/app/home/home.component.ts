@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { ReversePipe } from '../custom/reverse.pipe';
@@ -17,6 +17,16 @@ export class HomeComponent {
   salary = 100000;
   _obj = { name: 'NT' };
   isDisabled = true;
+  _class = 'active';
+  _color = 'cyan';
+  _font = '24';
+  show = true;
+  ticketInfo = [
+    { id: 1, name: 'angular', color: 'red' },
+    { id: 2, name: 'vue', color: 'green' },
+    { id: 3, name: 'react', color: 'blue' },
+  ];
+  _view = 'hehe';
 
   ChangeTitle() {
     this.title = 'Angular 19 updated title';
