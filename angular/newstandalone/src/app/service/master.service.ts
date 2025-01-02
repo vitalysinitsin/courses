@@ -12,4 +12,8 @@ export class MasterService {
       `http://localhost:3000/user?id=${_data.username}&&password=${_data.password}`
     );
   }
+
+  isLoggedIn() {
+    return localStorage.getItem('username') !== null;
+  }
 }

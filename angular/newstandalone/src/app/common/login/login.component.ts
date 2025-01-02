@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -21,19 +21,22 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   _loginData: LoginModel = { username: '', password: '' };
 
   constructor(private service: MasterService, private router: Router) {}
+
+  ngOnInit(): void {
+    localStorage.clear();
+  }
 
   ProceedLogin(form: any) {
     if (form.valid) {
       this.service.ProceedLogin(this._loginData).subscribe((item) => {
         let res = item;
 
-        console.log(res);
-
         if (res.length > 0) {
+          localStorage.setItem('username', this._loginData.username);
           this.router.navigateByUrl('');
         } else {
           alert('Invalid Credentials');
