@@ -14,6 +14,6 @@ export class MasterService {
   }
 
   isLoggedIn() {
-    return localStorage.getItem('username') !== null;
+    return localStorage.getItem('username') != null;
   }
 }

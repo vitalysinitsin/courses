@@ -12,20 +12,23 @@ import { LoginComponent } from './common/login/login.component';
 
 export const routes: Routes = [
   {
-    path: '',
-    component: HomeComponent,
-  },
-  {
-    path: 'about',
-    component: AboutComponent,
-  },
-  {
     path: 'login',
     component: LoginComponent,
   },
   {
+    path: '',
+    component: HomeComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
+    canActivate: [authGuard],
+  },
+  {
     path: 'contact',
     component: ContactComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'contact/:submenu/:id',
@@ -33,6 +36,7 @@ export const routes: Routes = [
       import('./common/contact/contact.component').then(
         (m) => m.ContactComponent
       ),
+    canActivate: [authGuard],
   },
   {
     path: 'customer',
