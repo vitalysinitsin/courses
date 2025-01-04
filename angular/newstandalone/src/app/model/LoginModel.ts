@@ -8,6 +8,7 @@ export interface User {
   name: string;
   password: string;
   role: string;
+  gender: string;
 }
 
 export interface Role {

@@ -6,6 +6,18 @@
       "password": "developer",
       "role": "admin"
     },
-    { "id": "2", "name": "Bruce", "password": "234234bat", "role": "user" }
+    {
+      "id": "2",
+      "name": "Bruce",
+      "password": "234234bat",
+      "role": "user"
+    },
+    {
+      "id": "misterman@gmail.com",
+      "name": "Johny",
+      "password": "1234qwer",
+      "role": "admin",
+      "gender": "m"
+    }
   ]
 }
