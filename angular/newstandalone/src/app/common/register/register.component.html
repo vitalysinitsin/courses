@@ -28,6 +28,22 @@
           }
         </mat-select>
       </mat-form-field>
+      <mat-radio-group aria-label="Select an option" formControlName="gender">
+        <mat-radio-button value="m">Male</mat-radio-button>
+        <mat-radio-button value="f">Female</mat-radio-button>
+        <mat-radio-button value="o">Prefer to self-describe</mat-radio-button>
+      </mat-radio-group>
+      <div>
+        <section class="example-section">
+          <mat-checkbox
+            color="primary"
+            class="example-margin"
+            formControlName="terms"
+            >By checking the box I agree with terms and
+            conditions(example)</mat-checkbox
+          >
+        </section>
+      </div>
     </mat-card-content>
     <mat-card-actions>
       <button type="submit" mat-raised-button color="primary">Register</button>

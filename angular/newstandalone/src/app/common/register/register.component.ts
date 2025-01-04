@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -12,11 +7,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterLink } from '@angular/router';
-
-interface Role {
-  value: string;
-  viewValue: string;
-}
+import { Role } from '../../model/LoginModel';
 
 @Component({
   selector: 'app-register',
@@ -34,7 +25,7 @@ interface Role {
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
-  constructor() {}
+  constructor(private formBuilder: FormBuilder) {}
 
   roles: Role[] = [
     {
@@ -51,18 +42,21 @@ export class RegisterComponent {
     },
   ];
 
-  registerForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    name: new FormControl(
+  registerForm = this.formBuilder.group({
+    username: this.formBuilder.control('', Validators.required),
+    name: this.formBuilder.control(
       '',
       Validators.compose([Validators.required, Validators.minLength(5)])
     ),
-    email: new FormControl(
+    email: this.formBuilder.control(
       '',
       Validators.compose([Validators.email, Validators.required])
     ),
-    role: new FormControl('', Validators.required),
+    role: this.formBuilder.control('', Validators.required),
+    gender: this.formBuilder.control('', Validators.required),
+    terms: this.formBuilder.control('', Validators.required),
   });
+
   ProceedWithRegister() {
     if (this.registerForm.valid) {
       console.log(this.registerForm.value);
