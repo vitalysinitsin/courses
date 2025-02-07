@@ -33,23 +33,23 @@ export class ProductComponent implements OnInit {
     'action',
   ];
   dataSource!: MatTableDataSource<Product>;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  productList: Product[] = [];
+
+  constructor(private service: ProductService) {}
 
   ngOnInit(): void {
     this.LoadProducts();
   }
 
-  constructor(private service: ProductService) {}
-
-  productList: Product[] = [];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   LoadProducts() {
     this.service.GetAll().subscribe((item) => {
       this.productList = item;
-      this.dataSource = new MatTableDataSource(this.productList);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      // this.dataSource = new MatTableDataSource(this.productList);
+      // this.dataSource.paginator = this.paginator;
+      // this.dataSource.sort = this.sort;
     });
   }
 }

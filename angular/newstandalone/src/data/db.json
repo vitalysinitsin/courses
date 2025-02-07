@@ -20,5 +20,20 @@
       "gender": "m"
     }
   ],
-  "product": []
+  "product": [
+    {
+      "id": 1,
+      "name": "Apple",
+      "description": "green apple with a leaf",
+      "price": 1.5,
+      "status": "available"
+    },
+    {
+      "id": 2,
+      "name": "pear",
+      "description": "yellow pear with a leaf",
+      "price": 2.5,
+      "status": "delayed delivery"
+    }
+  ]
 }
